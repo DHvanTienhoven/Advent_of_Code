@@ -1,11 +1,5 @@
-const RoundOneToSix = [17,1,3,16,19,0]
 
-//part 1
-
-let gameArray = [...RoundOneToSix]
-
-
-const playGame = array =>{
+""" const playGame = array =>{
     while (array.length <2020){
         const mostRecentNumber = array[array.length-1]
         if(array.lastIndexOf(mostRecentNumber, -2) === -1){
@@ -17,5 +11,14 @@ const playGame = array =>{
     console.log(array[2019])
 }
 
-playGame(gameArray)
+playGame(gameArray) """
 
+
+
+
+"""test_list = [ 9, 5, 3, 1,0, 5,0,9,5]
+second_list = test_list[:-1]
+
+result = len(second_list) - 1 - second_list[::-1].index(5) 
+
+print(result)"""
