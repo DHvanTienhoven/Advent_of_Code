@@ -7,23 +7,27 @@ def path_cable(cable):
     lr_direction = 0
     ud_direction = 0
     for dir in cable:
-        steps = range(0, int(dir[1:])+1)
-        if dir[0] == 'R':
-            for step in steps:
-                path.append(f'{lr_direction + step}, {ud_direction}')
-            lr_direction += int(dir[1:])
-        if dir[0] == 'U':
-            for step in steps:
-                path.append(f'{lr_direction}, {ud_direction + step}')
-            ud_direction += int(dir[1:])
-        if dir[0] == 'D':
-            for step in steps:
-                path.append(f'{lr_direction}, {ud_direction -step}')
-            ud_direction += -int(dir[1:])
-        if dir[0] == 'L':
-            for step in steps:
-                path.append(f'{lr_direction -step}, {ud_direction}')
-            lr_direction += -int(dir[1:])
+        dimension = dir[0]
+        num_steps = int(dir[1:])
+        steps = range(0, num_steps+1)
+        for step in steps:
+            if dimension == 'R':
+                new_str = f'{lr_direction + step}, {ud_direction}'
+            if dimension == 'U':
+                new_str = f'{lr_direction}, {ud_direction + step}'
+            if dimension == 'D':
+                new_str = f'{lr_direction}, {ud_direction -step}'
+            if dimension == 'L':
+                new_str = f'{lr_direction -step}, {ud_direction}'
+            path.append(new_str)
+        if dimension == 'R':
+            lr_direction += num_steps
+        if dimension == 'U':
+            ud_direction += num_steps
+        if dimension == 'D':
+            ud_direction += -num_steps
+        if dimension == 'L':
+            lr_direction += -num_steps
     return path
 
 
@@ -50,31 +54,30 @@ def find_number_of_steps(cable, intersection):
     ud_direction = 0
     for dir in cable:
         num_steps += -1
-        steps = range(0, int(dir[1:])+1)
-        if dir[0] == 'R':
-            for step in steps:
-                num_steps += 1
-                if f'{lr_direction + step}, {ud_direction}' == intersection:
-                    return num_steps
-            lr_direction += int(dir[1:])
-        if dir[0] == 'U':
-            for step in steps:
-                num_steps += 1
-                if f'{lr_direction}, {ud_direction + step}' ==intersection:
-                    return num_steps
-            ud_direction += int(dir[1:])
-        if dir[0] == 'D':
-            for step in steps:
-                num_steps += 1
-                if f'{lr_direction}, {ud_direction -step}' == intersection:
-                    return num_steps
-            ud_direction += -int(dir[1:])
-        if dir[0] == 'L':
-            for step in steps:
-                num_steps += 1
-                if f'{lr_direction -step}, {ud_direction}' == intersection:
-                    return num_steps
-            lr_direction += -int(dir[1:])
+        dir_dim = dir[0]
+        dir_num = int(dir[1:])
+        steps = range(0, dir_num+1)
+        for step in steps:
+            num_steps += 1
+            if dir_dim == 'R':
+                compare_str = f'{lr_direction + step}, {ud_direction}'
+            if dir_dim == 'U':
+                compare_str = f'{lr_direction}, {ud_direction + step}' 
+            if dir_dim == 'D':
+                compare_str = f'{lr_direction}, {ud_direction -step}'
+            if dir_dim == 'L':
+                compare_str = f'{lr_direction -step}, {ud_direction}'
+            if compare_str == intersection:
+                return num_steps
+        if dir_dim == 'R':
+            lr_direction += dir_num
+        if dir_dim == 'U':
+            ud_direction += dir_num
+        if dir_dim == 'D':
+            ud_direction += -dir_num
+        if dir_dim == 'L':
+            lr_direction += -dir_num
+
 
 def find_lowest_sum_of_steps(cable_1, cable_2, interscection_list):
     sums_of_steps = []
@@ -82,5 +85,3 @@ def find_lowest_sum_of_steps(cable_1, cable_2, interscection_list):
         sums_of_steps.append(find_number_of_steps(cable_1, inters) + find_number_of_steps(cable_2, inters))
     sums_of_steps.remove(0)
     return min(sums_of_steps)
-
-#right answers but will attempt some refactoring another time
