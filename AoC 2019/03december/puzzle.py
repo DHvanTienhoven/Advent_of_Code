@@ -40,8 +40,6 @@ def find_smallest_manhattan_distance(cable_1, cable_2):
     manhattan_distances.remove(0)
     return min(manhattan_distances)
 
-print(find_smallest_manhattan_distance(cable_one, cable_two))
-
 #part 2:
 
 intersections = find_intersections(cable_one, cable_two)
@@ -84,7 +82,5 @@ def find_lowest_sum_of_steps(cable_1, cable_2, interscection_list):
         sums_of_steps.append(find_number_of_steps(cable_1, inters) + find_number_of_steps(cable_2, inters))
     sums_of_steps.remove(0)
     return min(sums_of_steps)
-
-print(find_lowest_sum_of_steps(cable_one, cable_two, intersections))
 
 #right answers but will attempt some refactoring another time
