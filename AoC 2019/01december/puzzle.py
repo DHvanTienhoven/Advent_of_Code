@@ -26,3 +26,5 @@ def get_total_fuel():
     return answer
 
 print(get_total_fuel())
+
+#finished

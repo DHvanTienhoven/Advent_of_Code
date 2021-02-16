@@ -10,8 +10,10 @@ def check_password(number):
         if index >0:
             if int(char) < int(string[index-1]):
                 return False
-    if string[0] == string[1] or string[1] == string[2] or string[2] == string[3] or string[3] == string[4] or string[4] ==string[5]:
-        return True
+    for i in range(len(string)):
+        for j in range(i + 1,len(string)): 
+            if(string[i] == string[j]):
+                return True
     else:
         return False
 
@@ -22,6 +24,28 @@ def find_number_of_valid_passwords(list):
             valid_passwords += 1
     return valid_passwords
 
-print(find_number_of_valid_passwords(input_list))
-print(len(input_list))
+#part 2:
 
+def check_password_extra_condition(number):
+    string = str(number)
+    for index, char in enumerate(string):
+        if index >0:
+            if int(char) < int(string[index-1]):
+                return False
+    m = dict()
+    for i in range(len(string)):
+        m[string[i]] = m.get(string[i],0) + 1
+    for i in m.values(): 
+        if i == 2:
+            return True
+    else:
+        return False
+
+def find_number_of_valid_passwords_extra(list):
+    valid_passwords = 0
+    for number in list:
+        if check_password_extra_condition(number):
+            valid_passwords += 1
+    return valid_passwords
+
+print(find_number_of_valid_passwords_extra(input_list))

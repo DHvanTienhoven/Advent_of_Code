@@ -13,8 +13,7 @@ def find_start_code(num_list):
             if x == 99:
                 return num_list[0]
 
-#print(find_start_code(int_code))
-
+#part_two
 
 def find_inputs(num_list):
     list_one = range(0, 100)
@@ -27,4 +26,4 @@ def find_inputs(num_list):
             if find_start_code(work_list) == 19690720:
                 return i * 100 + j
 
-print(find_inputs(int_code))
+#finished

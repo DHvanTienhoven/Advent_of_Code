@@ -85,3 +85,6 @@ def find_lowest_sum_of_steps(cable_1, cable_2, interscection_list):
         sums_of_steps.append(find_number_of_steps(cable_1, inters) + find_number_of_steps(cable_2, inters))
     sums_of_steps.remove(0)
     return min(sums_of_steps)
+
+
+#finished
