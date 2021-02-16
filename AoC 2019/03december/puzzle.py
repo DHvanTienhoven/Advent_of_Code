@@ -7,27 +7,27 @@ def path_cable(cable):
     lr_direction = 0
     ud_direction = 0
     for dir in cable:
-        dimension = dir[0]
-        num_steps = int(dir[1:])
-        steps = range(0, num_steps+1)
+        dir_dim = dir[0]
+        dir_num = int(dir[1:])
+        steps = range(0, dir_num + 1)
         for step in steps:
-            if dimension == 'R':
+            if dir_dim == 'R':
                 new_str = f'{lr_direction + step}, {ud_direction}'
-            if dimension == 'U':
+            if dir_dim == 'U':
                 new_str = f'{lr_direction}, {ud_direction + step}'
-            if dimension == 'D':
+            if dir_dim == 'D':
                 new_str = f'{lr_direction}, {ud_direction -step}'
-            if dimension == 'L':
+            if dir_dim == 'L':
                 new_str = f'{lr_direction -step}, {ud_direction}'
             path.append(new_str)
-        if dimension == 'R':
-            lr_direction += num_steps
-        if dimension == 'U':
-            ud_direction += num_steps
-        if dimension == 'D':
-            ud_direction += -num_steps
-        if dimension == 'L':
-            lr_direction += -num_steps
+        if dir_dim == 'R':
+            lr_direction += dir_num
+        if dir_dim == 'U':
+            ud_direction += dir_num
+        if dir_dim == 'D':
+            ud_direction += -dir_num
+        if dir_dim == 'L':
+            lr_direction += -dir_num
     return path
 
 
@@ -56,7 +56,7 @@ def find_number_of_steps(cable, intersection):
         num_steps += -1
         dir_dim = dir[0]
         dir_num = int(dir[1:])
-        steps = range(0, dir_num+1)
+        steps = range(0, dir_num + 1)
         for step in steps:
             num_steps += 1
             if dir_dim == 'R':
