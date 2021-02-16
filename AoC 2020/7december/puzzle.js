@@ -18,7 +18,6 @@ const solution = array => {
         return newArray.length;
     }
 };
-olution(containsGold);
 
 //part 2
 

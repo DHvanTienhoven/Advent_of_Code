@@ -54,3 +54,5 @@ const checkTwelveth = valueCheckers.map(func => twelvethArray.every(item => func
 
 
 console.log(myTicket[1]*myTicket[19]*myTicket[2]*myTicket[4]*myTicket[14]*myTicket[6])
+
+//finished - niet op de meest elegante manier
